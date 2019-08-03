@@ -90,3 +90,10 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+.gitignore
+.idea/
+README.md
+config/
+json/
+package.json
+scripts/
