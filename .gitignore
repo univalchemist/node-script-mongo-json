@@ -92,8 +92,3 @@ typings/
 
 .gitignore
 .idea/
-README.md
-config/
-json/
-package.json
-scripts/
