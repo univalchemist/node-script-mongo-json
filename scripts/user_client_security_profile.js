@@ -1,36 +1,23 @@
 const fs = require('fs');
 const client = require('../config/db');
-client.connect(err => {
-  const collection = client.db("test").collection("userClientSecurityProfile");
-  const userCollection = client.db("test").collection("user");
-  // perform actions on the collection object
-  fs.readFile('../json/user_client_security_profile.json', 'utf8', async function (err, data) {
-    if (err) throw err;
-    var json = JSON.parse(data);
-    let userHistory = [];
-   await Promise.all(json.map( async item =>{
-      const history = item;
-      console.log("mapping******************************");
-      try {
-        let result = await userCollection.findOne({user_id: item.user_id})
-        if (result) {
-          console.log("result~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-          history.user = result
-        }
-      } catch (e) {
-        console.log("errrr @@@@@@@@@@@@@@@@@@@@@@@@@@@@", e);
-      }
-      userHistory.push(history);
+client.connect(async err  => {
+    const collection = client.db("test").collection("userClientSecurityProfile");
+    const jsonData = await fs.readFileSync('../json/user_client_security_profile.json', 'utf8');
+    const json = JSON.parse(jsonData);
+
+    const client_role_jsonData = await fs.readFileSync('../json/client_role.json', 'utf8');
+    const client_role_json = JSON.parse(client_role_jsonData);
+
+    const client_role_security_permission_jsonData = await fs.readFileSync('../json/client_role_security_permission.json', 'utf8');
+    const client_role_security_permission_json = JSON.parse(client_role_security_permission_jsonData);
+
+    let userClientSecurityProfile = [];
+    await Promise.all(json.map( async item =>{
+        const temp = item;
+        temp.client_role = client_role_json.filter(c => item.client_role_id === c.client_role_id);
+        temp.client_role_security_permission = client_role_security_permission_json.filter(c => item.client_role_id === c.client_role_id);
+        userClientSecurityProfile.push(temp);
     }));
-    console.log("endMapping~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    try {
-      const r = await collection.insertMany(userHistory);
-      if (r) {
-        console.log("==============Success===================")
-      }
-    } catch (e) {
-      throw e;
-    }
-    if (err) throw err;
-  });
+
+    await collection.insertMany(userClientSecurityProfile);
 });
