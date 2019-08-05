@@ -1,0 +1,3 @@
+[{"alert_recipient_id":1011, "alert_id":539, "role_id":0, "user_id":578, "snooze_indicator":"N", "active_indicator":"Y", "created_by":"N782446", "created_tsp":"2019-06-26 10:00:25", "updated_by":"N782446", "updated_tsp":"2019-06-26 10:00:25"},
+ {"alert_recipient_id":1012, "alert_id":540, "role_id":0, "user_id":464, "snooze_indicator":"N", "active_indicator":"Y", "created_by":"N275679", "created_tsp":"2019-06-26 10:01:48", "updated_by":"N275679", "updated_tsp":"2019-06-26 10:01:48"},
+ {"alert_recipient_id":1018, "alert_id":541, "role_id":0, "user_id":464, "snooze_indicator":"N", "active_indicator":"Y", "created_by":"N275679", "created_tsp":"2019-07-11 15:44:39", "updated_by":"N275679", "updated_tsp":"2019-07-11 15:44:39"}]

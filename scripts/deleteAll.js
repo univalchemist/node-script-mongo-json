@@ -23,6 +23,7 @@ client.connect(err => {
         const collection = client.db("test").collection(c);
         // perform actions on the collection object
         collection.deleteMany({}, function (err, doc) {
+            console.log("delete all successfully");
             if (err) throw err;
         })
     });

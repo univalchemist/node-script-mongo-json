@@ -28,4 +28,5 @@ client.connect(async err  => {
   }));
 
   await collection.insertMany(userFilter);
+  console.log("insert successfully");
 });

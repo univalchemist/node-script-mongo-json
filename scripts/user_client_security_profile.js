@@ -20,4 +20,5 @@ client.connect(async err  => {
     }));
 
     await collection.insertMany(userClientSecurityProfile);
+    console.log("insert successfully");
 });

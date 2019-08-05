@@ -22,4 +22,5 @@ client.connect(async err  => {
   }));
 
   await collection.insertMany(user);
+  console.log("insert successfully");
 });

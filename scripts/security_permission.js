@@ -5,4 +5,5 @@ client.connect(async err => {
   const jsonData = await fs.readFileSync('../json/security_permission.json', 'utf8');
   const json = JSON.parse(jsonData);
   await collection.insertMany(json);
+  console.log("insert successfully");
 });
